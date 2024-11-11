@@ -14,16 +14,16 @@ Teacher :: ~Teacher()
     delete[] courses;
 }
 
-void Teacher :: viewProfile() const 
+void Teacher :: viewProfile(ostream &os) const 
 {
-    cout << "\n========== Teacher Profile ==========\n";
-    cout << "ID: " << id << endl;
-    cout << "Name: " << name << endl;
+    os << "\n========== Teacher Profile ==========\n";
+    os << "ID: " << id << endl;
+    os << "Name: " << name << endl;
 
     // Read teachers data
     ifstream teachersFile("teachers.json");
     if (!teachersFile.is_open()) {
-        cout << "Error: Unable to open teachers.json" << endl;
+        os << "Error: Unable to open teachers.json" << endl;
         return;
     }
     json teachersData;
@@ -35,12 +35,12 @@ void Teacher :: viewProfile() const
                              [this](const json& teacher) { return teacher["id"] == this->id; });
 
     if (teacherIt == teachersData["teachers"].end() || !teacherIt->contains("courses") || teacherIt->at("courses").empty()) {
-        cout << "Courses: Not assigned to any courses.\n";
+        os << "Courses: Not assigned to any courses.\n";
     } else {
-        cout << "\nAssigned Courses:\n";
-        cout << "----------------------------------------------------\n";
-        cout << "Course Code\tCourse Name\n";
-        cout << "----------------------------------------------------\n";
+        os << "\nAssigned Courses:\n";
+        os << "----------------------------------------------------\n";
+        os << "Course Code\tCourse Name\n";
+        os << "----------------------------------------------------\n";
 
         for (const auto& course : teacherIt->at("courses")) {
             string courseCode = course["Code"];
@@ -56,14 +56,14 @@ void Teacher :: viewProfile() const
 
             string courseName = (courseIt != coursesData["courses"].end()) ? courseIt->at("name") : "Unknown";
 
-            cout << courseCode << "\t\t" << courseName << "\n";
+            os << courseCode << "\t\t" << courseName << "\n";
         }
 
-        cout << "----------------------------------------------------\n";
-        cout << "Total Courses: " << teacherIt->at("courses").size() << endl;
+        os << "----------------------------------------------------\n";
+        os << "Total Courses: " << teacherIt->at("courses").size() << endl;
     }
 
-    cout << "\n======================================\n";
+    os << "\n======================================\n";
 }
 
 void Teacher :: updateAttendance(const string& studentId, const string& courseCode) {
@@ -242,6 +242,11 @@ void Teacher :: updateGrade(const string& studentId, const string& courseCode) {
     cout << "New Grade: " << grade << endl;
 }
 
+void Teacher :: viewProfile() const {
+    viewProfile(cout);  // Default to console output
+}
 
-
-
+ostream& operator<<(ostream& os, const Teacher &teacher) {
+    teacher.viewProfile(os);
+    return os;
+}

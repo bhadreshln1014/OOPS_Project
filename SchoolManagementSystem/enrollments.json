@@ -4,48 +4,48 @@
             {
                 "attendance": 95,
                 "courseCode": "MATH101",
-                "grade": "A"
+                "grade": 99
             },
             {
                 "attendance": 88,
                 "courseCode": "ENG201",
-                "grade": "B+"
+                "grade": 96
             }
         ],
         "S002": [
             {
                 "attendance": 92,
                 "courseCode": "SCI102",
-                "grade": "A-"
+                "grade": 90
             },
             {
                 "attendance": 85,
                 "courseCode": "CS301",
-                "grade": "B"
+                "grade": 98
             }
         ],
         "S003": [
             {
                 "attendance": 80,
                 "courseCode": "MATH101",
-                "grade": "B"
+                "grade": 45
             },
             {
                 "attendance": 95,
                 "courseCode": "SCI102",
-                "grade": "A"
+                "grade": 54
             }
         ],
         "S004": [
             {
                 "attendance": 97,
                 "courseCode": "ENG201",
-                "grade": "A"
+                "grade": 63
             },
             {
                 "attendance": 90,
                 "courseCode": "CS301",
-                "grade": "A-"
+                "grade": 72
             }
         ],
         "S005": [

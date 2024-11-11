@@ -95,15 +95,16 @@ int main() {
 
                     switch(principalChoice) {
                         case '1':
-                            principal.viewProfile();
+                            cout << principal;
                             break;
                         case '2': {
                             cout << "\n=== Student Management ===\n";
                             cout << "1. Create Student\n";
-                            cout << "2. View All Students\n";
+                            cout << "2. View a particular Student\n";
                             cout << "3. Update Student\n";
                             cout << "4. Delete Student\n";
-                            cout << "5. Back\n";
+                            cout << "5. View all Students\n";
+                            cout << "6. Back\n";
                             cout << "Choice: ";
                             
                             char studentMgmtChoice;
@@ -120,7 +121,9 @@ int main() {
                                     principal.createStudent(studentId, studentName);
                                     break;
                                 case '2':
-                                    principal.viewAllStudents();
+                                    cout << "Enter Student ID: ";
+                                    cin >> studentId;
+                                    principal.retrieveStudent(studentId);
                                     break;
                                 case '3':
                                     cout << "Enter Student ID to update: ";
@@ -132,16 +135,20 @@ int main() {
                                     cin >> studentId;
                                     principal.deleteStudent(studentId);
                                     break;
+                                case '5':
+                                    principal.viewAllStudents();
+                                    break;
                             }
                             break;
                         }
                         case '3': {
                             cout << "\n=== Teacher Management ===\n";
                             cout << "1. Create Teacher\n";
-                            cout << "2. View All Teachers\n";
+                            cout << "2. View a particular Teacher\n";
                             cout << "3. Update Teacher\n";
                             cout << "4. Delete Teacher\n";
-                            cout << "5. Back\n";
+                            cout << "5. View all Teachers\n";
+                            cout << "6. Back\n";
                             cout << "Choice: ";
                             
                             char teacherMgmtChoice;
@@ -158,7 +165,9 @@ int main() {
                                     principal.createTeacher(teacherId, teacherName);
                                     break;
                                 case '2':
-                                    principal.viewAllTeachers();
+                                    cout << "Enter Teacher ID: ";
+                                    cin >> teacherId;
+                                    principal.retrieveTeacher(teacherId);
                                     break;
                                 case '3':
                                     cout << "Enter Teacher ID to update: ";
@@ -170,16 +179,20 @@ int main() {
                                     cin >> teacherId;
                                     principal.deleteTeacher(teacherId);
                                     break;
+                                case '5':
+                                    principal.viewAllTeachers();
+                                    break;
                             }
                             break;
                         }
                         case '4': {
                             cout << "\n=== Course Management ===\n";
                             cout << "1. Create Course\n";
-                            cout << "2. View All Courses\n";
+                            cout << "2. View a particular Course\n";
                             cout << "3. Update Course\n";
                             cout << "4. Delete Course\n";
-                            cout << "5. Back\n";
+                            cout << "5. View all Courses\n";
+                            cout << "6. Back\n";
                             cout << "Choice: ";
                             
                             char courseMgmtChoice;
@@ -196,7 +209,9 @@ int main() {
                                     principal.createCourse(courseId, courseName);
                                     break;
                                 case '2':
-                                    principal.viewAllCourses();
+                                    cout << "Enter Course ID: ";
+                                    cin >> courseId;
+                                    principal.retrieveCourse(courseId);
                                     break;
                                 case '3':
                                     cout << "Enter Course ID to update: ";
@@ -207,6 +222,9 @@ int main() {
                                     cout << "Enter Course ID to delete: ";
                                     cin >> courseId;
                                     principal.deleteCourse(courseId);
+                                    break;
+                                case '5':
+                                    principal.viewAllCourses();
                                     break;
                             }
                             break;
@@ -235,7 +253,7 @@ int main() {
 
                     switch(teacherChoice) {
                         case '1':
-                            teacher.viewProfile();
+                            cout << teacher;
                             break;
                         case '2': {
                             string studentId, courseCode;
@@ -278,7 +296,7 @@ int main() {
 
                     switch(studentChoice) {
                         case '1':
-                            student.viewProfile();
+                            cout << student;
                             break;
                         case '2':
                             student.viewGrades();

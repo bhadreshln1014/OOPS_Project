@@ -1242,12 +1242,19 @@ void Principal :: viewAllCourses() const
 
 // Overriden function to display Principal details
 
-void Principal :: viewProfile() const 
+void Principal :: viewProfile(ostream &os) const 
 {
-    cout << endl;
-    cout << "Principal Profile:\n";
-    cout << "ID: " << id << endl;
-    cout << "Name: " << name << endl;
+    os << endl;
+    os << "Principal Profile:\n";
+    os << "ID: " << id << endl;
+    os << "Name: " << name << endl;
 }
 
+ostream& operator<<(ostream& os, const Principal& principal) {
+    principal.viewProfile(os);
+    return os;
+}
 
+void Principal :: viewProfile() const {
+    viewProfile(cout);  // Default to console output
+}

@@ -137,10 +137,10 @@ void Student :: viewGrades() const {
 
 }
 
-void Student :: viewProfile() const {
-    cout << "\n========== Student Profile ==========\n";
-    cout << "ID: " << id << endl;
-    cout << "Name: " << name << endl;
+void Student :: viewProfile(ostream &os) const {
+    os << "\n========== Student Profile ==========\n";
+    os << "ID: " << id << endl;
+    os << "Name: " << name << endl;
 
     // Read enrollments data
     ifstream enrollmentsFile("enrollments.json");
@@ -154,12 +154,12 @@ void Student :: viewProfile() const {
 
     // Check if student is enrolled in any courses
     if (!enrollmentsData["enrollments"].contains(id)) {
-        cout << "Courses: Not enrolled in any courses.\n";
+        os << "Courses: Not enrolled in any courses.\n";
     } else {
-        cout << "\nEnrolled Courses:\n";
-        cout << "----------------------------------------------------\n";
-        cout << "Course Code\tGrade\t\tAttendance\n";
-        cout << "----------------------------------------------------\n";
+        os << "\nEnrolled Courses:\n";
+        os << "----------------------------------------------------\n";
+        os << "Course Code\tGrade\t\tAttendance\n";
+        os << "----------------------------------------------------\n";
 
         float totalGrade = 0.0f;
         float totalAttendance = 0.0f;
@@ -186,12 +186,12 @@ void Student :: viewProfile() const {
             avgGrade = round(avgGrade * 100.0) / 100.0;
             avgAttendance = round(avgAttendance * 100.0) / 100.0;
 
-            cout << "Average Grade: " << avgGrade << endl;
-            cout << "Average Attendance: " << avgAttendance << "%\n";
+            os << "Average Grade: " << avgGrade << endl;
+            os << "Average Attendance: " << avgAttendance << "%\n";
         }
     }
 
-    cout << "\n======================================\n";
+    os << "\n======================================\n";
 }
 
 Student :: Student(const string &userId = "", const string& userName = "", StudentStats* stat = nullptr) : User(userId, userName), stats(stat) 
@@ -206,6 +206,16 @@ Student :: Student(const string &userId = "", const string& userName = "", Stude
 Student :: ~Student() 
 {
     delete[] stats;
+}
+
+void Student::viewProfile() const {
+    viewProfile(cout);  // Default to console output
+}
+
+// Implement the friend operator
+ostream& operator<<(ostream& os, const Student& student) {
+    student.viewProfile(os);  // Call the modified viewProfile method
+    return os;
 }
 
 

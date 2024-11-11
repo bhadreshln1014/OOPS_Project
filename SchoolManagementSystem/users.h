@@ -31,6 +31,7 @@ class User
     
     public:
         User(const string &userId, const string &userName) { id = userId; name = userName;};
+        virtual void viewProfile(ostream &os) const = 0;
         virtual void viewProfile() const = 0;
         string getId() const;
         string getName() const;
@@ -60,6 +61,8 @@ class Principal : public User
         void viewAllCourses() const;
 
         void viewProfile() const override;
+        void viewProfile(ostream &os) const override;
+        friend ostream & operator <<(ostream &os, const Principal &);
         Principal(string &userId, const string &userName) : User(userId, userName) {};
 
 };
@@ -73,6 +76,8 @@ class Student : public User
         Student(const string &userId, const string &userName, StudentStats*);
         ~Student();
         void viewProfile() const override;
+        void viewProfile(ostream &os) const override;
+        friend ostream & operator <<(ostream &os, const Student &);
         void viewAttendances() const;
         void viewGrades() const;
 
@@ -87,8 +92,10 @@ class Teacher : public User
         Teacher(const string &userId, const string &userName, Course* c);
         ~Teacher();
         void viewProfile() const override;
+        void viewProfile(ostream &os) const override;
         void updateAttendance(const string &studentId, const string &courseCode);
         void updateGrade(const string &studentId, const string &courseCode);
+        friend ostream & operator <<(ostream &os, const Teacher &);
 
 };
 
