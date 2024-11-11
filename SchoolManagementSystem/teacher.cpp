@@ -250,3 +250,8 @@ ostream& operator<<(ostream& os, const Teacher &teacher) {
     teacher.viewProfile(os);
     return os;
 }
+
+Teacher :: Teacher() : User(id, name)
+{
+    courses = nullptr;
+}

@@ -2,8 +2,14 @@
 
 // Student Functions
 
-void Principal :: createStudent(const string &id, const string &name) 
+void Principal :: createStudent() 
 {
+    string studentId, studentName;
+    cout << "Enter Student ID: ";
+    cin >> studentId;
+    cout << "Enter Student Name: ";
+    cin.ignore();
+    getline(cin, studentName);
     json studentsData;
     
     // 1. Read existing students data
@@ -15,16 +21,16 @@ void Principal :: createStudent(const string &id, const string &name)
     
     // 2. Check if student with same ID exists
     for (const auto& student : studentsData["students"]) {
-        if (student["id"] == id) {
-            cout << "Error: Student with ID " << id << " already exists!" << endl;
+        if (student["id"] == studentId) {
+            cout << "Error: Student with ID " << studentId << " already exists!" << endl;
             return;
         }
     }
     
     // 3. Add new student
     json newStudent;
-    newStudent["id"] = id;
-    newStudent["name"] = name;
+    newStudent["id"] = studentId;
+    newStudent["name"] = studentName;
     studentsData["students"].push_back(newStudent);
     
     // 4. Write updated data back to file
@@ -32,16 +38,19 @@ void Principal :: createStudent(const string &id, const string &name)
     if (outFile.is_open()) {
         outFile << studentsData.dump(4);  // The '4' argument adds indentation for readability
         outFile.close();
-        cout << "Student " << name << " with ID " << id << " created successfully!" << endl;
+        cout << "Student " << studentName << " with ID " << studentId << " created successfully!" << endl;
     } else {
         cout << "Error: Unable to open students.json for writing!" << endl;
     }
 }
 
-void Principal :: retrieveStudent(const string &id) 
+void Principal :: retrieveStudent() 
 {
+    string id;
+    cout << "Enter Student ID: ";
+    cin >> id;
+
     json studentsData, enrollmentsData;
-    
     // Read students data
     ifstream studentsFile("students.json");
     if (!studentsFile.is_open()) {
@@ -133,8 +142,12 @@ void Principal :: retrieveStudent(const string &id)
     }
 }
 
-void Principal :: updateStudent(const string &id) 
+void Principal :: updateStudent() 
 {
+    string id;
+    cout << "Enter Student ID: ";
+    cin >> id;
+
     json studentsData, enrollmentsData, coursesData;
     
     // 1. Read existing students data
@@ -334,8 +347,12 @@ void Principal :: updateStudent(const string &id)
     }
 }
 
-void Principal :: deleteStudent(const string &id) 
+void Principal :: deleteStudent() 
 {
+    string id;
+    cout << "Enter Student ID: ";
+    cin >> id;
+    
     json studentsData, enrollmentsData;
 
     // Read students data
@@ -434,8 +451,14 @@ void Principal :: viewAllStudents() const
 
 // Teacher Functions
 
-void Principal :: createTeacher(const string &id, const string &name) 
+void Principal :: createTeacher() 
 {
+    string id, name;
+    cout << "Enter Teacher ID: ";
+    cin >> id;
+    cout << "Enter Teacher Name: ";
+    cin >> name;
+
     json teachersData;
 
     // Read existing teachers data
@@ -477,8 +500,11 @@ void Principal :: createTeacher(const string &id, const string &name)
     cout << "Teacher " << name << " with ID " << id << " has been successfully created." << endl;
 }
 
-void Principal :: retrieveTeacher(const string &id) 
+void Principal :: retrieveTeacher() 
 {
+    string id;
+    cout << "Enter Teacher ID: ";
+    cin >> id;
     json teachersData;
 
     // Read teachers data
@@ -544,8 +570,11 @@ void Principal :: retrieveTeacher(const string &id)
     }
 }
 
-void Principal :: updateTeacher(const string &id) 
+void Principal :: updateTeacher() 
 {
+    string id;
+    cout << "Enter Teacher ID: ";
+    cin >> id;
     json teachersData, coursesData;
 
     // Read existing teachers data
@@ -705,8 +734,11 @@ void Principal :: updateTeacher(const string &id)
     }
 }
 
-void Principal :: deleteTeacher(const string &id) 
+void Principal :: deleteTeacher() 
 {
+    string id;
+    cout << "Enter Teacher ID: ";
+    cin >> id;
     json teachersData, coursesData;
 
     // Read teachers data

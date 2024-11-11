@@ -98,6 +98,7 @@ int main() {
                             cout << principal;
                             break;
                         case '2': {
+                            Student dummy;
                             cout << "\n=== Student Management ===\n";
                             cout << "1. Create Student\n";
                             cout << "2. View a particular Student\n";
@@ -113,30 +114,19 @@ int main() {
 
                             switch(studentMgmtChoice) {
                                 case '1':
-                                    cout << "Enter Student ID: ";
-                                    cin >> studentId;
-                                    cout << "Enter Student Name: ";
-                                    cin.ignore();
-                                    getline(cin, studentName);
-                                    principal.createStudent(studentId, studentName);
+                                    principal.create(dummy);
                                     break;
                                 case '2':
-                                    cout << "Enter Student ID: ";
-                                    cin >> studentId;
-                                    principal.retrieveStudent(studentId);
+                                    principal.retrieve(dummy);
                                     break;
                                 case '3':
-                                    cout << "Enter Student ID to update: ";
-                                    cin >> studentId;
-                                    principal.updateStudent(studentId);
+                                    principal.update(dummy);
                                     break;
                                 case '4':
-                                    cout << "Enter Student ID to delete: ";
-                                    cin >> studentId;
-                                    principal.deleteStudent(studentId);
+                                    principal.del(dummy);
                                     break;
                                 case '5':
-                                    principal.viewAllStudents();
+                                    principal.viewAll(dummy);
                                     break;
                             }
                             break;
@@ -150,37 +140,26 @@ int main() {
                             cout << "5. View all Teachers\n";
                             cout << "6. Back\n";
                             cout << "Choice: ";
-                            
+                            Teacher dummy;
                             char teacherMgmtChoice;
                             cin >> teacherMgmtChoice;
                             string teacherId, teacherName;
 
                             switch(teacherMgmtChoice) {
                                 case '1':
-                                    cout << "Enter Teacher ID: ";
-                                    cin >> teacherId;
-                                    cout << "Enter Teacher Name: ";
-                                    cin.ignore();
-                                    getline(cin, teacherName);
-                                    principal.createTeacher(teacherId, teacherName);
+                                    principal.create(dummy);
                                     break;
                                 case '2':
-                                    cout << "Enter Teacher ID: ";
-                                    cin >> teacherId;
-                                    principal.retrieveTeacher(teacherId);
+                                    principal.retrieve(dummy);
                                     break;
                                 case '3':
-                                    cout << "Enter Teacher ID to update: ";
-                                    cin >> teacherId;
-                                    principal.updateTeacher(teacherId);
+                                    principal.update(dummy);
                                     break;
                                 case '4':
-                                    cout << "Enter Teacher ID to delete: ";
-                                    cin >> teacherId;
-                                    principal.deleteTeacher(teacherId);
+                                    principal.del(dummy);
                                     break;
                                 case '5':
-                                    principal.viewAllTeachers();
+                                    principal.viewAll(dummy);
                                     break;
                             }
                             break;

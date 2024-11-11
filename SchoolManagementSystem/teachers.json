@@ -3,16 +3,6 @@
         {
             "courses": [
                 {
-                    "Code": "MATH101",
-                    "Name": "Algebra Fundamentals"
-                }
-            ],
-            "id": "T001",
-            "name": "Dr. Robert Brown"
-        },
-        {
-            "courses": [
-                {
                     "Code": "ENG201",
                     "Name": "Advanced English Literature"
                 }
@@ -53,6 +43,10 @@
                 {
                     "Code": "CS302",
                     "Name": "Design and Analysis of Algorithms"
+                },
+                {
+                    "Code": "MATH101",
+                    "Name": "Algebra Fundamentals"
                 }
             ],
             "id": "T005",

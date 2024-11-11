@@ -218,4 +218,8 @@ ostream& operator<<(ostream& os, const Student& student) {
     return os;
 }
 
+Student :: Student() : User(id, name)
+{
+    stats = nullptr;
+}
 
